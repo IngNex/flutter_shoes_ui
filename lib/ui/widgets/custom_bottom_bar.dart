@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomABottomBar extends StatelessWidget {
-  const CustomABottomBar({
+class CustomBottomBar extends StatelessWidget {
+  const CustomBottomBar({
     Key? key,
     required this.color,
   }) : super(key: key);
@@ -17,7 +17,8 @@ class CustomABottomBar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(
-          children: <Widget>[
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             IconButton(
               onPressed: () {},
               icon: const Icon(
