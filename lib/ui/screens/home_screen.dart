@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoes_ui/models/data.dart';
-import 'package:flutter_shoes_ui/models/shoes.dart';
+import 'package:flutter_shoes_ui/ui/screens/details_shoes.dart';
 import 'package:flutter_shoes_ui/ui/widgets/custom_app_bar.dart';
 import 'package:flutter_shoes_ui/ui/widgets/custom_bottom_bar.dart';
 
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 20.0,
-                        color: index == indexPage ? getColor() : Colors.white,
+                        color: index == 0 ? getColor() : Colors.white,
                       ),
                     ),
                   ),
@@ -90,104 +90,117 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 final shoes = listShoes[index];
                 final listTitle = shoes.category.split(' ');
-                return Padding(
-                  padding:
-                      EdgeInsets.only(right: index == indexPage ? 30.0 : 60.0),
-                  child: Transform.translate(
-                    offset: Offset(index == indexPage ? 0 : 20, 0),
-                    child: LayoutBuilder(builder: (context, constrains) {
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 220),
-                        margin: EdgeInsets.only(
-                            top: index == indexPage ? 30 : 50, bottom: 30),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(36),
-                          color: Colors.white,
-                        ),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20.0,
-                                horizontal: 40,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    shoes.category,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    shoes.name,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    shoes.price,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  FittedBox(
-                                    child: Text(
-                                      '${listTitle[0]}\n${listTitle[1]}',
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(PageRouteBuilder(
+                      pageBuilder: (context, animation, _) {
+                        return DetailsShoes(shoes: shoes);
+                      },
+                    ));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        right: index == indexPage ? 30.0 : 60.0),
+                    child: Transform.translate(
+                      offset: Offset(index == indexPage ? 0 : 20, 0),
+                      child: LayoutBuilder(builder: (context, constrains) {
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 220),
+                          margin: EdgeInsets.only(
+                              top: index == indexPage ? 30 : 50, bottom: 30),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(36),
+                            color: Colors.white,
+                          ),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 20.0,
+                                  horizontal: 40,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      shoes.category,
                                       style: const TextStyle(
-                                        color: Colors.grey,
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      shoes.name,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      shoes.price,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              top: constrains.maxHeight * 0.2,
-                              left: constrains.maxWidth * 0.05,
-                              right: -constrains.maxWidth * 0.16,
-                              bottom: constrains.maxHeight * 0.2,
-                              child: Image(
-                                image: AssetImage(shoes.listImage[0].image),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Material(
-                                color: shoes.listImage[0].color,
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(36),
-                                    bottomRight: Radius.circular(36)),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: const SizedBox(
-                                    height: 100,
-                                    width: 100,
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 40,
+                                    const SizedBox(height: 4),
+                                    FittedBox(
+                                      child: Text(
+                                        '${listTitle[0]}\n${listTitle[1]}',
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                top: constrains.maxHeight * 0.2,
+                                left: constrains.maxWidth * 0.05,
+                                right: -constrains.maxWidth * 0.16,
+                                bottom: constrains.maxHeight * 0.2,
+                                child: Hero(
+                                  tag: shoes.name,
+                                  child: Image(
+                                    image: AssetImage(shoes.listImage[0].image),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    }),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Material(
+                                  color: shoes.listImage[0].color,
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(36),
+                                      bottomRight: Radius.circular(36)),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: const SizedBox(
+                                      height: 100,
+                                      width: 100,
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 40,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
                   ),
                 );
               },
@@ -197,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 120,
             padding: const EdgeInsets.all(20),
             child: CustomBottomBar(color: getColor()),
-          )
+          ),
         ],
       ),
     );
