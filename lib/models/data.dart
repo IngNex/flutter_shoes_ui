@@ -1,74 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoes_ui/models/shoes.dart';
 
-final listCategory = ['Backetball', 'Running', 'Traning'];
+final listCategory = ['Running', 'Sneakers', 'Footwear'];
 
 final listShoes = [
   Shoes(
-    'AIR JORDAN 1 MID SE GC',
-    'KINE AIR',
-    '\$120.00',
+    'DURAMO SL 2.0',
+    'ADIDAS RUNNING',
+    '\$95.00',
     4,
     [
       ImageShoes(
+        'assets/shoes/K_03.png',
+        const Color.fromARGB(255, 240, 60, 64),
+      ),
+      ImageShoes(
         'assets/shoes/K_01.png',
-        const Color(0xffEAA906),
+        const Color.fromARGB(255, 143, 157, 170),
       ),
       ImageShoes(
         'assets/shoes/K_02.png',
-        const Color(0xff088894),
-      ),
-      ImageShoes(
-        'assets/shoes/K_03.png',
-        const Color(0xffB50D0D),
+        Color.fromARGB(255, 35, 38, 136),
       ),
       ImageShoes(
         'assets/shoes/K_04.png',
-        const Color(0xff229954),
+        Color.fromARGB(255, 5, 5, 5),
       ),
     ],
   ),
   Shoes(
-    'NIKE BLAZER MID',
-    'NIKE AIR',
-    '\$150.00',
+    'BOUNCE LEGEND',
+    'ADIDAS SNEAKER',
+    '\$105.00',
     4,
     [
       ImageShoes(
         'assets/shoes/M_01.png',
-        const Color(0xff08B894),
+        Color.fromARGB(255, 170, 170, 154),
       ),
       ImageShoes(
         'assets/shoes/M_02.png',
-        const Color(0xffE90311),
+        const Color.fromARGB(255, 163, 203, 202),
       ),
       ImageShoes(
         'assets/shoes/M_03.png',
-        const Color(0xff189E03),
+        Color.fromARGB(255, 5, 5, 5),
       ),
     ],
   ),
   Shoes(
-    'ZoomX VaporFly',
-    'NIKE ZOOM',
-    '\$180.00',
+    'OZWEEGO ORIGINAL',
+    'ADIDAS FOOTWEAR',
+    '\$120.00',
     4,
     [
       ImageShoes(
         'assets/shoes/L_01.png',
-        const Color(0xff7B7A41),
+        Color.fromARGB(255, 15, 17, 94),
       ),
       ImageShoes(
         'assets/shoes/L_02.png',
-        const Color(0xff2C2C46),
+        const Color.fromARGB(255, 143, 83, 85),
       ),
       ImageShoes(
         'assets/shoes/L_03.png',
-        const Color(0xff262626),
+        const Color.fromARGB(255, 166, 121, 98),
       ),
       ImageShoes(
         'assets/shoes/L_04.png',
-        const Color(0xff5C9462),
+        const Color.fromARGB(255, 120, 126, 116),
       ),
     ],
   ),

@@ -65,16 +65,27 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
                   listCategory.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Text(
-                      listCategory[index],
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20.0,
-                        color: index == 0 ? getColor() : Colors.white,
+                  (index) => Card(
+                    elevation: 8,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: index == indexPage ? getColor() : Colors.white,
+                      ),
+                      child: Text(
+                        listCategory[index],
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 16.0,
+                          color:
+                              index == indexPage ? Colors.white : Colors.black,
+                        ),
                       ),
                     ),
                   ),
@@ -92,11 +103,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 final listTitle = shoes.category.split(' ');
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(PageRouteBuilder(
-                      pageBuilder: (context, animation, _) {
-                        return DetailsShoes(shoes: shoes);
-                      },
-                    ));
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(milliseconds: 650),
+                        reverseTransitionDuration:
+                            const Duration(milliseconds: 650),
+                        pageBuilder: (context, animation, _) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: DetailsShoes(shoes: shoes),
+                          );
+                        },
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -105,9 +124,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       offset: Offset(index == indexPage ? 0 : 20, 0),
                       child: LayoutBuilder(builder: (context, constrains) {
                         return AnimatedContainer(
-                          duration: const Duration(milliseconds: 220),
+                          duration: const Duration(milliseconds: 250),
                           margin: EdgeInsets.only(
-                              top: index == indexPage ? 30 : 50, bottom: 30),
+                              top: index == indexPage ? 40 : 80,
+                              bottom: index == indexPage ? 40 : 80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(36),
                             color: Colors.white,
@@ -117,45 +137,45 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: 20.0,
-                                  horizontal: 40,
+                                  vertical: 25.0,
+                                  horizontal: 20,
                                 ),
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      shoes.category,
+                                      listTitle[1],
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    const SizedBox(height: 8),
+                                    const SizedBox(height: 10),
                                     Text(
                                       shoes.name,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 28,
+                                        fontSize: 32,
                                         fontWeight: FontWeight.w800,
                                       ),
                                     ),
-                                    const SizedBox(height: 4),
+                                    const SizedBox(height: 10),
                                     Text(
                                       shoes.price,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
+                                      style: TextStyle(
+                                        color: shoes.listImage[0].color,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    const SizedBox(height: 4),
+                                    const SizedBox(height: 15),
                                     FittedBox(
                                       child: Text(
                                         '${listTitle[0]}\n${listTitle[1]}',
-                                        style: const TextStyle(
-                                          color: Colors.grey,
+                                        style: TextStyle(
+                                          color: Colors.grey.withOpacity(0.6),
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -164,10 +184,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Positioned(
-                                top: constrains.maxHeight * 0.2,
-                                left: constrains.maxWidth * 0.05,
-                                right: -constrains.maxWidth * 0.16,
-                                bottom: constrains.maxHeight * 0.2,
+                                top: constrains.maxHeight * 0.4,
+                                left: -constrains.maxWidth * 0.2,
+                                right: -constrains.maxWidth * 0.2,
+                                bottom: -constrains.maxHeight * 0.02,
                                 child: Hero(
                                   tag: shoes.name,
                                   child: Image(
@@ -178,19 +198,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               Positioned(
                                 bottom: 0,
                                 right: 0,
-                                child: Material(
-                                  color: shoes.listImage[0].color,
-                                  borderRadius: const BorderRadius.only(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Material(
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(36),
-                                      bottomRight: Radius.circular(36)),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: const SizedBox(
-                                      height: 100,
-                                      width: 100,
-                                      child: Icon(
-                                        Icons.add,
-                                        size: 40,
+                                      bottomRight: Radius.circular(36),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: shoes.listImage[0].color,
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(36),
+                                          bottomRight: Radius.circular(36),
+                                        ),
+                                        border: Border.all(
+                                            color: Colors.grey, width: 2),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: const SizedBox(
+                                          height: 80,
+                                          width: 80,
+                                          child: Icon(
+                                            Icons.add_shopping_cart_outlined,
+                                            size: 40,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -207,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Container(
-            height: 120,
+            height: 100,
             padding: const EdgeInsets.all(20),
             child: CustomBottomBar(color: getColor()),
           ),

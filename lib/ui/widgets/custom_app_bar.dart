@@ -12,19 +12,44 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset('assets/shoes/nike_w.png'),
+            const CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 18,
+              child: Hero(
+                tag: 'logo',
+                child: Image(
+                  image: AssetImage('assets/shoes/adidas.png'),
+                ),
+              ),
+            ),
             Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.menu,
-                  ),
+                Stack(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.shopping_cart_outlined,
+                      ),
+                    ),
+                    const Positioned(
+                      top: 4,
+                      right: 4,
+                      child: CircleAvatar(
+                        radius: 8,
+                        backgroundColor: Colors.pinkAccent,
+                        child: Text(
+                          '0',
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(
-                    Icons.shopping_bag_outlined,
+                    Icons.menu,
                   ),
                 ),
               ],

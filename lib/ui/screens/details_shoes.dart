@@ -34,6 +34,7 @@ class _DetailsShoesState extends State<DetailsShoes> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final listTitle = widget.shoes.category.split(' ');
     return Scaffold(
       body: Stack(
         children: [
@@ -81,14 +82,14 @@ class _DetailsShoesState extends State<DetailsShoes> {
           ),
           Positioned(
             top: size.height * 0.2,
-            right: 0,
-            left: 0,
+            right: 10,
+            left: 10,
             child: FittedBox(
               child: Text(
-                widget.shoes.category,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[100],
+                '${listTitle[0]}\n${listTitle[1]}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -107,7 +108,7 @@ class _DetailsShoesState extends State<DetailsShoes> {
             ),
           ),
           Positioned(
-            top: size.height * 0.6,
+            top: size.height * 0.62,
             left: 16,
             right: 16,
             child: Column(
@@ -189,7 +190,7 @@ class _DetailsShoesState extends State<DetailsShoes> {
                                       .shoes.listImage[valueIndexColor].color
                                   : Colors.white,
                               child: Text(
-                                '${index + 7}',
+                                '${index + 7}\'',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 22,
@@ -203,71 +204,67 @@ class _DetailsShoesState extends State<DetailsShoes> {
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            top: size.height * 0.84,
-            left: 16,
-            right: 16,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ShakeTransition(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Color',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: List.generate(
-                          widget.shoes.listImage.length,
-                          (index) => GestureDetector(
-                            onTap: () {
-                              valueIndexColor = index;
-                              setState(() {});
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(right: 8.0),
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: widget.shoes.listImage[index].color,
-                                shape: BoxShape.circle,
-                                border: index == valueIndexColor
-                                    ? Border.all(
-                                        color: Colors.white,
-                                        width: 2,
-                                      )
-                                    : null,
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ShakeTransition(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Color',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 16),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: List.generate(
+                              widget.shoes.listImage.length,
+                              (index) => GestureDetector(
+                                onTap: () {
+                                  valueIndexColor = index;
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 8.0),
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: widget.shoes.listImage[index].color,
+                                    shape: BoxShape.circle,
+                                    border: index == valueIndexColor
+                                        ? Border.all(
+                                            color: Colors.white,
+                                            width: 2,
+                                          )
+                                        : null,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                    ShakeTransition(
+                      left: false,
+                      child: CustomButton(
+                        onTap: () {},
+                        color: widget.shoes.listImage[valueIndexColor].color,
+                        width: 100,
+                        child: Text(
+                          'BUY',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.black),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                ShakeTransition(
-                  left: false,
-                  child: CustomButton(
-                    onTap: () {},
-                    color: widget.shoes.listImage[valueIndexColor].color,
-                    width: 100,
-                    child: Text(
-                      'BUY',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

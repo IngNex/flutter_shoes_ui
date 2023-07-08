@@ -22,62 +22,24 @@ class CustomBottomBar extends StatelessWidget {
             IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.house,
-                size: 36,
+                Icons.home_rounded,
+                size: 30,
               ),
             ),
-            Container(
-              height: double.infinity,
-              width: 50,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Center(
-                child: Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: color,
-                  ),
-                  child: Center(
-                    child: Container(
-                      height: 15,
-                      width: 15,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                        child: Container(
-                          height: 12,
-                          width: 12,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: color,
-                          ),
-                          child: Center(
-                            child: Container(
-                              height: 5,
-                              width: 5,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                radius: 15,
+                backgroundColor: color,
+                child: CircleAvatar(radius: 5, backgroundColor: Colors.white),
               ),
             ),
             IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.person_outline_outlined,
+                Icons.person_rounded,
+                size: 30,
               ),
             ),
           ],
