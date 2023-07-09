@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 3),
       () {
         return Navigator.of(context).push(PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 750),
+          transitionDuration: const Duration(seconds: 1),
           pageBuilder: (context, animation, _) {
             return FadeTransition(
               opacity: animation,
@@ -41,17 +41,17 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               children: [
                 TweenAnimationBuilder(
-                  duration: const Duration(seconds: 1),
+                  duration: const Duration(milliseconds: 1200),
                   tween: Tween<double>(begin: 1.0, end: 0.0),
                   curve: Curves.easeInOutBack,
                   builder: (context, value, _) {
                     return Transform.translate(
                       offset: Offset(0, -150.0 * value),
-                      child: const CircleAvatar(
-                        radius: 90,
-                        backgroundColor: Colors.white,
-                        child: Hero(
-                          tag: 'logo',
+                      child: const Hero(
+                        tag: 'logo',
+                        child: CircleAvatar(
+                          radius: 90,
+                          backgroundColor: Colors.white,
                           child: Image(
                             image: AssetImage('assets/shoes/adidas.png'),
                           ),
@@ -60,9 +60,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     );
                   },
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
                 TweenAnimationBuilder(
-                  duration: const Duration(milliseconds: 800),
+                  duration: const Duration(milliseconds: 1000),
                   tween: Tween<double>(begin: 1.0, end: 0.0),
                   curve: Curves.easeInOutBack,
                   builder: (context, value, _) {

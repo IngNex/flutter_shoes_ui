@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shoes_ui/ui/screens/home/home_screen.dart';
 import 'package:flutter_shoes_ui/ui/screens/splash/splash_screen.dart';
 
 void main() {

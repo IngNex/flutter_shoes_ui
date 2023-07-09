@@ -12,15 +12,27 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 18,
-              child: Hero(
-                tag: 'logo',
-                child: Image(
-                  image: AssetImage('assets/shoes/adidas.png'),
+            const Row(
+              children: [
+                Hero(
+                  tag: 'logo',
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 18,
+                    child: Image(
+                      image: AssetImage('assets/shoes/adidas.png'),
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(width: 10),
+                Text(
+                  'ADIDAS',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 20.0,
+                  ),
+                )
+              ],
             ),
             Row(
               children: [
