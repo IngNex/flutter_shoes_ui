@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shoes_ui/ui/screens/home_screen.dart';
+import 'package:flutter_shoes_ui/ui/screens/home/home_screen.dart';
+import 'package:flutter_shoes_ui/ui/screens/splash/splash_screen.dart';
 
 void main() {
   runApp(
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter UI Shoes',
       darkTheme: ThemeData.dark(),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

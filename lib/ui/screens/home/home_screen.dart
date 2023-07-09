@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shoes_ui/models/data.dart';
-import 'package:flutter_shoes_ui/ui/screens/details_shoes.dart';
+import 'package:flutter_shoes_ui/ui/screens/details/details_shoes.dart';
 import 'package:flutter_shoes_ui/ui/widgets/custom_app_bar.dart';
 import 'package:flutter_shoes_ui/ui/widgets/custom_bottom_bar.dart';
 
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const CustomAppBar(),
+          CustomAppBar(),
           SizedBox(
             height: 50,
             child: Padding(
